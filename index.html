@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Leave Application Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include html2pdf library for easy PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2>Teacher Leave Application Portal</h2>
+            <p>Manage leave applications across your schools</p>
+        </header>
+
+        <main>
+            <form id="leaveForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="teacherName">Teacher Name:</label>
+                        <input type="text" id="teacherName" required placeholder="Enter full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="empId">Employee ID:</label>
+                        <input type="text" id="empId" required placeholder="e.g., T-1042">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="schoolName">School Name / Code:</label>
+                        <select id="schoolName" required>
+                            <option value="">Select School</option>
+                            <option value="School 01 - Sample High School">School 01 - Sample High School</option>
+                            <option value="School 02 - Model Academy">School 02 - Model Academy</option>
+                            <!-- Add your 99 schools here or load dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="leaveType">Leave Type:</label>
+                        <select id="leaveType" required>
+                            <option value="Casual Leave">Casual Leave (CL)</option>
+                            <option value="Medical Leave">Medical Leave (ML)</option>
+                            <option value="Earned Leave">Earned Leave (EL)</option>
+                            <option value="Child Care Leave">Child Care Leave (CCL)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startDate">From Date:</label>
+                        <input type="date" id="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">To Date:</label>
+                        <input type="date" id="endDate" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="reason">Reason for Leave:</label>
+                    <textarea id="reason" rows="3" required placeholder="State reason clearly..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit & Generate PDF</button>
+            </form>
+        </main>
+    </div>
+
+    <!-- Hidden Printable Template (Used for PDF Generation) -->
+    <div id="pdfTemplate" class="pdf-container">
+        <div class="pdf-header">
+            <h3>APPLICATION FOR LEAVE OF ABSENCE</h3>
+            <p>Office of the District / Control Authority</p>
+            <hr>
+        </div>
+        <div class="pdf-body">
+            <p><strong>Date:</strong> <span id="lblCurrentDate"></span></p>
+            <p><strong>To,</strong><br>The Controlling Authority,<br>Multiple Schools Administration</p>
+            <p>Respected Sir/Madam,</p>
+            <p>I, <strong><span id="lblTeacherName"></span></strong> (Employee ID: <strong><span id="lblEmpId"></span></strong>), working as a teacher at <strong><span id="lblSchoolName"></span></strong>, would like to apply for <strong><span id="lblLeaveType"></span></strong> from <strong><span id="lblStartDate"></span></strong> to <strong><span id="lblEndDate"></span></strong> (Total Days: <span id="lblTotalDays"></span>).</p>
+            <p><strong>Reason:</strong><br><span id="lblReason"></span></p>
+            <br><br>
+            <div class="pdf-signatures">
+                <div class="sig-box">
+                    <p>___________________________</p>
+                    <p>Signature of Applicant</p>
+                </div>
+                <div class="sig-box">
+                    <p>___________________________</p>
+                    <p>Signature of Headmaster / Principal</p>
+                </div>
+            </div>
+            <div class="for-office-use">
+                <h4>For Office Use Only:</h4>
+                <p>Status: [ &nbsp; ] Approved &nbsp; &nbsp; &nbsp; [ &nbsp; ] Rejected</p>
+                <p>Remarks: __________________________________________________</p>
+                <br>
+                <p>Signature of Controlling Officer: ___________________________</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
